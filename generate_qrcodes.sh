@@ -10,6 +10,8 @@ SQUARE_SIZE=1200  # Reduced from 1500 to better fit on A4
 QR_SIZE=20  # QR code module size
 BORDER_COLOR="#333333"  # Darker border color for better visibility
 BORDER_WIDTH=2  # Border width in pixels
+TOP_PADDING=100  # Padding from top for title
+BOTTOM_PADDING=100  # Padding from bottom for QR code
 
 # Create output directory if it doesn't exist
 mkdir -p "$OUTPUT_DIR"
@@ -25,15 +27,23 @@ tail -n +2 "$CSV_FILE" | while IFS=, read -r title link; do
     # Create a blank square canvas with padding
     magick -size ${SQUARE_SIZE}x${SQUARE_SIZE} xc:white "$OUTPUT_DIR/temp/temp_canvas.png"
     
-    # Add title text with Berkeley Mono Bold font
+    # Add title text with Berkeley Mono Bold font at top with specified padding
     magick "$OUTPUT_DIR/temp/temp_canvas.png" \
-        -gravity North -font "$FONT" -pointsize 60 -annotate +0+180 "$title" \
+        -gravity North -font "$FONT" -pointsize 60 -annotate +0+${TOP_PADDING} "$title" \
         "$OUTPUT_DIR/temp/temp_with_title.png"
     
-    # Add QR code to the center
+    # Add QR code to the bottom with specified padding
+    # Get QR code dimensions to calculate vertical position
+    QR_DIMENSIONS=$(magick identify -format "%wx%h" "$OUTPUT_DIR/temp/temp_qr.png")
+    QR_HEIGHT=$(echo $QR_DIMENSIONS | cut -d'x' -f2)
+    
+    # Calculate vertical position to align QR code at the bottom with padding
+    VERTICAL_POSITION=$((SQUARE_SIZE - QR_HEIGHT - BOTTOM_PADDING))
+    
+    # Add QR code at calculated position (centered horizontally, bottom aligned with padding)
     magick "$OUTPUT_DIR/temp/temp_with_title.png" \
         "$OUTPUT_DIR/temp/temp_qr.png" \
-        -gravity Center -composite \
+        -gravity South -geometry +0+${BOTTOM_PADDING} -composite \
         "$OUTPUT_DIR/temp/temp_final.png"
     
     # Add dashed border (on all sides) for cutting guides
