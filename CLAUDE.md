@@ -23,7 +23,20 @@
 - QR code size and border styles should be standardized for consistency
 
 ## Development Workflow
-- Commit changes after completing each task: `git add . && git commit -m "Description of changes"`
-- Include descriptive commit messages explaining what was changed and why
+- Commit changes after completing each task
+- Use detailed commit messages with a short title and bullet points for changes
+- Structure commits with co-authorship using this format:
+  ```
+  git -c commit.gpgsign=false commit -m "Descriptive title
+
+  - Bullet point detailing first change
+  - Bullet point detailing second change
+  - Additional details about the implementation
+
+  🤖 Generated with [Claude Code](https://claude.ai/code)
+
+  Co-Authored-By: Claude <noreply@anthropic.com>"
+  ```
+- Disable GPG signing with `-c commit.gpgsign=false` if GPG is configured
 - Do not push changes automatically; only commit to local repository
 - Commit frequently with small, logical changes rather than large batch updates
