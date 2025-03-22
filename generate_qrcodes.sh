@@ -10,8 +10,8 @@ SQUARE_SIZE=1200  # Reduced from 1500 to better fit on A4
 QR_SIZE=20  # QR code module size
 BORDER_COLOR="#333333"  # Darker border color for better visibility
 BORDER_WIDTH=2  # Border width in pixels
-TOP_PADDING=100  # Padding from top for title
-BOTTOM_PADDING=100  # Padding from bottom for QR code
+TOP_PADDING=110  # Padding from top for title
+BOTTOM_PADDING=90  # Padding from bottom for QR code
 
 # Create output directory if it doesn't exist
 mkdir -p "$OUTPUT_DIR"
