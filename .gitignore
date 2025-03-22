@@ -1,0 +1,10 @@
+# Generated QR code output
+qr_pdfs/
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
