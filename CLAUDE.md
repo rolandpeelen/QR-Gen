@@ -3,11 +3,13 @@
 ## Commands
 - Generate QR codes: `./generate_qrcodes.sh`
 - Run script with debugging: `bash -x ./generate_qrcodes.sh`
+- First-time setup: `cp links.example.csv links.csv` then edit links.csv
 
 ## Dependencies
-- qrencode: For QR code generation
-- ImageMagick: For image manipulation (magick command)
-- pdftk: For PDF manipulation
+- qrencode: For QR code generation (`brew install qrencode`)
+- ImageMagick: For image manipulation (`brew install imagemagick`)
+- pdftk: For PDF manipulation (`brew install pdftk-java`)
+- Berkeley Mono Bold font (or modify the FONT variable in script)
 
 ## Code Style
 - Use 4-space indentation in shell scripts
@@ -21,6 +23,13 @@
 ## Data Formats
 - CSV data files should be comma-separated with no spaces: `title,link`
 - QR code size and border styles should be standardized for consistency
+- User data files (links.csv) should not be committed to the repository
+- Use links.example.csv as a template for users to create their own links.csv
+
+## Repository Management
+- Keep qr_pdfs/ directory with generated output excluded from Git
+- Do not commit user-specific files like links.csv
+- Provide example files with .example suffix (e.g., file.example.ext)
 
 ## Development Workflow
 - Commit changes after completing each task
