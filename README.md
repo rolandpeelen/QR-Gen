@@ -20,24 +20,29 @@ A shell script utility to generate QR codes from a CSV file and format them for 
 
 ## Usage
 
-1. Prepare a CSV file named `links.csv` with the following format:
-   ```
-   title,link
-   Crate-01,https://example.com/link1
-   Crate-02,https://example.com/link2
+1. Create your own `links.csv` file based on the provided example:
+   ```bash
+   cp links.example.csv links.csv
    ```
 
-2. Make the script executable:
+2. Edit `links.csv` with your own title/link pairs:
+   ```
+   title,link
+   My First QR,https://example.com/link1
+   My Second QR,https://example.com/link2
+   ```
+
+3. Make the script executable (if not already):
    ```bash
    chmod +x generate_qrcodes.sh
    ```
 
-3. Run the script:
+4. Run the script:
    ```bash
    ./generate_qrcodes.sh
    ```
 
-4. Find the generated PDF in the `qr_pdfs` directory:
+5. Find the generated PDF in the `qr_pdfs` directory:
    - `print_layout_all.pdf`: Combined PDF with all QR codes arranged for printing
 
 ## Customization

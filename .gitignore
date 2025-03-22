@@ -1,6 +1,9 @@
 # Generated QR code output
 qr_pdfs/
 
+# User data files (use links.example.csv as a template)
+links.csv
+
 # OS specific files
 .DS_Store
 Thumbs.db
